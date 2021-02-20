@@ -1,0 +1,16 @@
+[package]
+name = "iwantobuyps5"
+version = "0.1.0"
+authors = ["Shub1427 <shub1493biswas@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+fantoccini = "0.17"
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1.0.61", features = ["derive"] }
+serde_json = { version = "1.0.61" }
+phf = { version = "0.8", features = ["macros"] }
+config = "0.10"
+telegram-bot = { git = "https://github.com/telegram-rs/telegram-bot", branch = "master" }

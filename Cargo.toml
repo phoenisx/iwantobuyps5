@@ -16,3 +16,4 @@ config = "0.10"
 telegram-bot = { git = "https://github.com/telegram-rs/telegram-bot", branch = "master" }
 regex = "1"
 futures = "0.3"
+chrono = "0.4"

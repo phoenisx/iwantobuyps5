@@ -7,6 +7,8 @@ pub struct Secret {
     pub product_id: String,
     pub bot_username: String,
     pub channel_id: i64,
+    pub finish_time: String,
+    pub sleep_delay: usize,
 }
 
 impl Secret {

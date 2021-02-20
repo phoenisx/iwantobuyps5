@@ -1,8 +1,7 @@
-use fantoccini::{ClientBuilder};
+use chrono::{DateTime, Utc};
+use fantoccini::ClientBuilder;
 use serde_json::json;
-use telegram_bot::{
-    Api, Channel, ChannelId, Chat, SendMessage,
-};
+use telegram_bot::{Api, Channel, ChannelId, Chat, SendMessage};
 use tokio::time::{self, Duration};
 
 mod secrets;
@@ -44,8 +43,8 @@ async fn main() {
     // https://developer.mozilla.org/en-US/docs/Web/WebDriver/Capabilities/firefoxOptions
     let caps = {
         let mut caps = serde_json::map::Map::new();
-        // let moz_opts = json!({ "args": ["-headless"] });
-        let moz_opts = json!({});
+        let moz_opts = json!({ "args": ["-headless"] });
+        // let moz_opts = json!({});
         caps.insert("moz:firefoxOptions".to_string(), moz_opts);
         caps
     };
@@ -55,10 +54,17 @@ async fn main() {
         .connect("http://localhost:4444")
         .await
         .expect("failed to connect to WebDriver");
-    let sleep = time::sleep(Duration::from_millis(10));
+    let sleep = time::sleep(Duration::from_millis(secrets.sleep_delay as u64));
     tokio::pin!(sleep);
 
-    loop {
+    let finish_time = secrets.finish_time.parse::<DateTime<Utc>>().unwrap();
+
+    while finish_time.timestamp_millis() > Utc::now().timestamp_millis() {
+        println!(
+        "Date: {}, {}",
+            finish_time.timestamp_millis(),
+            Utc::now().timestamp_millis()
+        );
         let amz = store::Amazon::new("https://www.amazon.in");
         let path = format!("{}/{}", *store::PATHS.get("PRODUCT_PAGE").unwrap(), secrets.product_id);
         amz.goto(&mut client, path.as_str()).await.unwrap();

@@ -14,3 +14,5 @@ serde_json = { version = "1.0.61" }
 phf = { version = "0.8", features = ["macros"] }
 config = "0.10"
 telegram-bot = { git = "https://github.com/telegram-rs/telegram-bot", branch = "master" }
+regex = "1"
+futures = "0.3"

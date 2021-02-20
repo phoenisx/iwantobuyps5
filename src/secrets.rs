@@ -4,6 +4,9 @@ use serde::{Deserialize};
 #[derive(Debug, Deserialize)]
 pub struct Secret {
     pub telegram_token: String,
+    pub product_id: String,
+    pub bot_username: String,
+    pub channel_id: i64,
 }
 
 impl Secret {

@@ -455,7 +455,9 @@ version = "0.1.0"
 dependencies = [
  "config",
  "fantoccini",
+ "futures",
  "phf",
+ "regex",
  "serde 1.0.123",
  "serde_json",
  "telegram-bot",
